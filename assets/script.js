@@ -88,14 +88,45 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// Global variables
+const charOptions = [];
+const generatedPassword = '';
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-}
+  // Prompt the user to provide a password between 8 - 128 characters until the input is valid
+  let passwordLength = 0;
+
+  do {
+    passwordLength = parseInt(prompt("Choose a password length between 8 - 128 characters:"));
+  } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength));
+
+  // Prompt the user until they select at least one character set
+  let specialCharacters = false;
+  let numericCharacters = false;
+  let lowerCasedCharacters = false;
+  let upperCasedCharacters = false;
+
+  do {
+    specialCharacters = confirm("Would you like to use special characters? Please click OK for true or Cancel for false");
+    numericCharacters = confirm("Would you like to use numeric characters? Please click OK for true or Cancel for false");
+    lowerCasedCharacters = confirm("Would you like to use lower case characters? Please click OK for true or Cancel for false");
+    upperCasedCharacters = confirm("Would you like to use upper case characters? Please click OK for true or Cancel for false");
+  } while (!specialCharacters && !numericCharacters && !lowerCasedCharacters && !upperCasedCharacters);
+
+  // Push selected character sets to the charOptions array
+  switch 
+
+  }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  let generatingPassword = "";
 
+  for (let i = 0, length = passwordLength; length < i; i++) {
+
+  }
 }
 
 // Function to generate password with user input
