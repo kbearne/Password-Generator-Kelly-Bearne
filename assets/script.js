@@ -89,7 +89,13 @@ var upperCasedCharacters = [
 ];
 
 // Global variables
-const charOptions = [];
+const charOptions = [
+  { name: "specialCharacters", status: false },
+  { name: "numericCharacters", status: false },
+  { name: "lowerCasedCharacters", status: false },
+  { name: "upperCasedCharacters", status: false },
+];
+
 const generatedPassword = '';
 
 // Function to prompt user for password options
@@ -102,29 +108,21 @@ function getPasswordOptions() {
     passwordLength = parseInt(prompt("Choose a password length between 8 - 128 characters:"));
   } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength));
 
-  // Prompt the user until they select at least one character set
-  let specialCharacters = false;
-  let numericCharacters = false;
-  let lowerCasedCharacters = false;
-  let upperCasedCharacters = false;
-
+  // Prompt the user until they select at least one character set set charOptions 'status' to match selections
   do {
-    specialCharacters = confirm("Would you like to use special characters? Please click OK for true or Cancel for false");
-    numericCharacters = confirm("Would you like to use numeric characters? Please click OK for true or Cancel for false");
-    lowerCasedCharacters = confirm("Would you like to use lower case characters? Please click OK for true or Cancel for false");
-    upperCasedCharacters = confirm("Would you like to use upper case characters? Please click OK for true or Cancel for false");
-  } while (!specialCharacters && !numericCharacters && !lowerCasedCharacters && !upperCasedCharacters);
+    charOptions[0].status = confirm("Would you like to use special characters? Please click OK for true or Cancel for false");
+    charOptions[1].status = confirm("Would you like to use numeric characters? Please click OK for true or Cancel for false");
+    charOptions[2].status = confirm("Would you like to use lower case characters? Please click OK for true or Cancel for false");
+    charOptions[3].status = confirm("Would you like to use upper case characters? Please click OK for true or Cancel for false");
+  } while (!charOptions[0].status && !charOptions[1].status && !charOptions[2].status && !charOptions[3].status);
 
-  // Push selected character sets to the charOptions array
-  switch 
-
-  }
+}
 
 // Function for getting a random element from an array
 function getRandom(arr) {
   let generatingPassword = "";
 
-  for (let i = 0, length = passwordLength; length < i; i++) {
+  for (let i = 0; i < passwordLength; i++) {
 
   }
 }
