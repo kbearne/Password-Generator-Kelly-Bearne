@@ -96,14 +96,13 @@ const charOptions = [
   { name: "upperCasedCharacters", status: false },
 ];
 
-const generatedPassword = '';
+const generatedPassword = "";
+let passwordLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
 
   // Prompt the user to provide a password between 8 - 128 characters until the input is valid
-  let passwordLength = 0;
-
   do {
     passwordLength = parseInt(prompt("Choose a password length between 8 - 128 characters:"));
   } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength));
@@ -118,14 +117,47 @@ function getPasswordOptions() {
 
 }
 
+getPasswordOptions();
+
 // Function for getting a random element from an array
-function getRandom(arr) {
-  let generatingPassword = "";
+function getRandom() {
 
+  // Filter all character sets that are set as 'true'
+  let trueCharOptions = charOptions.filter(option => option.status);
+  console.log(trueCharOptions);
+  
   for (let i = 0; i < passwordLength; i++) {
+    let passwordCharacter = "";
+    let getCharacterArray = 0;
+    
+    // Math.random to select one of the charOptions array items (if set to true)
+    getCharacterArray = Math.floor(Math.random() * trueCharOptions.length);
 
+    // Match it with the corresponding array
+    switch (getCharacterArray) {
+      case 0:
+        console.log("specialCharacters");
+        break;
+      case 1:
+        console.log("numericCharacters");
+        break;
+      case 2:
+        console.log("lowerCasedCharacters");
+        break;
+      case 3:
+        console.log("upperCasedCharacters");
+        break;
+      default:
+        return 1;
+    }
+
+    // Math.random to select random item within that array
+    // Push that value to the generatingPassword string
+    // generatedPassword += passwordCharacter;
   }
 }
+
+getRandom();
 
 // Function to generate password with user input
 function generatePassword() {
