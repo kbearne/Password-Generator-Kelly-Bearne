@@ -96,72 +96,80 @@ const charOptions = [
   { name: "upperCasedCharacters", status: false },
 ];
 
-const generatedPassword = "";
+let generatedPassword = "";
 let passwordLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // Get password length from user input
+  passwordLength = parseInt(document.getElementById("passwordLength").value);
 
-  // Prompt the user to provide a password between 8 - 128 characters until the input is valid
-  do {
-    passwordLength = parseInt(prompt("Choose a password length between 8 - 128 characters:"));
-  } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength));
+  // Get character set options from user input
+  charOptions[0].status = document.getElementById("specialCharacters").checked;
+  charOptions[1].status = document.getElementById("numericCharacters").checked;
+  charOptions[2].status = document.getElementById("lowerCasedCharacters").checked;
+  charOptions[3].status = document.getElementById("upperCasedCharacters").checked;
 
-  // Prompt the user until they select at least one character set set charOptions 'status' to match selections
-  do {
-    charOptions[0].status = confirm("Would you like to use special characters? Please click OK for true or Cancel for false");
-    charOptions[1].status = confirm("Would you like to use numeric characters? Please click OK for true or Cancel for false");
-    charOptions[2].status = confirm("Would you like to use lower case characters? Please click OK for true or Cancel for false");
-    charOptions[3].status = confirm("Would you like to use upper case characters? Please click OK for true or Cancel for false");
-  } while (!charOptions[0].status && !charOptions[1].status && !charOptions[2].status && !charOptions[3].status);
+  // Validate input
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    alert("Please enter a valid password length between 8 and 128 characters.");
+    return;
+  }
 
+  if (!charOptions.some(option => option.status)) {
+    alert("Please select at least one character set.");
+    return;
+  }
 }
-
-getPasswordOptions();
 
 // Function for getting a random element from an array
 function getRandom() {
-
   // Filter all character sets that are set as 'true'
   let trueCharOptions = charOptions.filter(option => option.status);
-  console.log(trueCharOptions);
-  
-  for (let i = 0; i < passwordLength; i++) {
-    let passwordCharacter = "";
-    let getCharacterArray = 0;
-    
-    // Math.random to select one of the charOptions array items (if set to true)
-    getCharacterArray = Math.floor(Math.random() * trueCharOptions.length);
 
-    // Match it with the corresponding array
-    switch (getCharacterArray) {
+  for (let i = 0; i < passwordLength; i++) {
+    let passwordCharacterIndex = 0;
+    let selectedCharSetIndex = 0;
+
+    // Math.random to select one of the charOptions array items (if set to true)
+    selectedCharSetIndex = Math.floor(Math.random() * trueCharOptions.length);
+
+    // Switch matches the randomly selected character array with the master array
+    switch (selectedCharSetIndex) {
       case 0:
-        console.log("specialCharacters");
+        passwordCharacterIndex = Math.floor(Math.random() * specialCharacters.length);
+        generatedPassword += specialCharacters[passwordCharacterIndex];
         break;
       case 1:
-        console.log("numericCharacters");
+        passwordCharacterIndex = Math.floor(Math.random() * numericCharacters.length);
+        generatedPassword += numericCharacters[passwordCharacterIndex];
         break;
       case 2:
-        console.log("lowerCasedCharacters");
+        passwordCharacterIndex = Math.floor(Math.random() * lowerCasedCharacters.length);
+        generatedPassword += lowerCasedCharacters[passwordCharacterIndex];
         break;
       case 3:
-        console.log("upperCasedCharacters");
+        passwordCharacterIndex = Math.floor(Math.random() * upperCasedCharacters.length);
+        generatedPassword += upperCasedCharacters[passwordCharacterIndex];
         break;
       default:
         return 1;
     }
-
-    // Math.random to select random item within that array
-    // Push that value to the generatingPassword string
-    // generatedPassword += passwordCharacter;
   }
 }
 
-getRandom();
-
 // Function to generate password with user input
 function generatePassword() {
+  getPasswordOptions();
 
+  // Check for errors before proceeding
+  if (charOptions.every(option => !option.status)) {
+    console.error("Error: Please select at least one character set.");
+    return;
+  }
+
+  getRandom();
+  return generatedPassword;
 }
 
 // Get references to the #generate element
@@ -172,7 +180,10 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  // If no errors then display output
+  if (password !== undefined) {
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
