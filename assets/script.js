@@ -162,13 +162,17 @@ function getRandom() {
 function generatePassword() {
   getPasswordOptions();
 
-  // Check for errors before proceeding
+  // Clear the previous password
+  generatedPassword = "";
+
+  // Check that at least one character set is selected before proceeding
   if (charOptions.every(option => !option.status)) {
     console.error("Error: Please select at least one character set.");
     return;
   }
 
   getRandom();
+
   return generatedPassword;
 }
 
@@ -181,7 +185,7 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   // If no errors then display output
-  if (password !== undefined) {
+  if (password !== undefined && password.length > 7 && password.length < 129) {
     passwordText.value = password;
   }
 }

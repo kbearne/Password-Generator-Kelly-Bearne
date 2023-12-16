@@ -12,9 +12,12 @@
       <header>
         <h1>Password Generator</h1>
       </header>
+      <!-- Form elements to generate a new password -->
       <div class="card-body">
+        <!-- Range (slider) to input password length: only accepts the allowed range (between 8 - 128 characters) -->
         <label for="passwordLength">Password Length:</label>
-        <input type="number" id="passwordLength" placeholder="Enter password length" />
+        <input type="range" id="passwordLength" min="8" max="128" value="8" />
+        <span id="passwordLengthValue">8</span>
       
         <label for="specialCharacters">Include Special Characters:</label>
         <input type="checkbox" id="specialCharacters" />
@@ -33,6 +36,20 @@
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
       </div>
     </div>
+
+    <!-- JavaScript reference -->
     <script src="./assets/script.js"></script>
+
+    <!-- Update the password length slider value dynamically -->
+    <script type="text/javascript">
+      var passwordLengthSlider = document.getElementById("passwordLength");
+      var passwordLengthValue = document.getElementById("passwordLengthValue");
+
+      // Update the displayed value when the slider value changes
+      passwordLengthSlider.addEventListener("input", function() {
+      passwordLengthValue.textContent = passwordLengthSlider.value;
+    });
+    </script>
+
   </body>
 </html>
