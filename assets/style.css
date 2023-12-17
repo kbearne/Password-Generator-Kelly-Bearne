@@ -1,3 +1,8 @@
+/* Global variables */
+:root {
+  --form-white: #e7e9eb;
+}
+
 *,
 *::before,
 *::after {
@@ -30,6 +35,7 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+/* Form styling */
 form {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
@@ -47,7 +53,7 @@ form-header::after {
   content: " ";
   display: block;
   width: 100%;
-  background: #e7e9eb;
+  background: var(--form-white);
   height: 2px;
 }
 
@@ -63,7 +69,7 @@ form-footer::before {
   content: " ";
   display: block;
   width: 100%;
-  background: #e7e9eb;
+  background: var(--form-white);
   height: 2px;
 }
 
@@ -73,6 +79,7 @@ form-footer::after {
   clear: both;
 }
 
+/* Button styling */
 .btn {
   border: none;
   background-color: hsl(360, 91%, 36%);
@@ -89,6 +96,7 @@ form-footer::after {
   cursor: pointer;
 }
 
+/* Button styling specific to the reset button */
 #btn-reset {
   background-color: grey;
 }
