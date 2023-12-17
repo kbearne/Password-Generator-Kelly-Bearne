@@ -30,7 +30,7 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
-.card {
+form {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
   border-width: 1px;
@@ -42,7 +42,7 @@ header {
   padding: 30px 40px;
 }
 
-.card-header::after {
+form-header::after {
   content: " ";
   display: block;
   width: 100%;
@@ -50,15 +50,15 @@ header {
   height: 2px;
 }
 
-.card-body {
+form-body {
   min-height: 100px;
 }
 
-.card-footer {
+form-footer {
   text-align: center;
 }
 
-.card-footer::before {
+form-footer::before {
   content: " ";
   display: block;
   width: 100%;
@@ -66,7 +66,7 @@ header {
   height: 2px;
 }
 
-.card-footer::after {
+form-footer::after {
   content: " ";
   display: block;
   clear: both;
@@ -86,6 +86,10 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+#btn-reset {
+  background-color: grey;
 }
 
 button[disabled] {

@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en-gb">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
-    <link rel="stylesheet" href="./assets/style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <section class="wrapper">
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <form>
+      <!-- Welcome message and user instructios for form -->
+      <p>
+        Welcome to the Password Generator. For security reasons, passwords must:
+      <ul>
+        <li>
+          be between 8 - 128 characters
+        </li>
+        <li>
+          have at least one character type selected
+        </li>
+      </ul>
+      </p>
       <!-- Form elements to generate a new password -->
-      <div class="card-body">
-        <!-- Range (slider) to input password length: only accepts the allowed range (between 8 - 128 characters) -->
-        <label for="passwordLength">Password Length:</label>
-        <input type="range" id="passwordLength" min="8" max="128" value="8" />
-        <span id="passwordLengthValue">8</span>
-      
-        <label for="specialCharacters">Include Special Characters:</label>
-        <input type="checkbox" id="specialCharacters" />
-      
-        <label for="numericCharacters">Include Numeric Characters:</label>
-        <input type="checkbox" id="numericCharacters" />
-      
-        <label for="lowerCasedCharacters">Include Lowercase Characters:</label>
-        <input type="checkbox" id="lowerCasedCharacters" />
-      
-        <label for="upperCasedCharacters">Include Uppercase Characters:</label>
-        <input type="checkbox" id="upperCasedCharacters" />
-      
-        <button id="generate" class="btn">Generate Password</button>
-      
-        <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
-      </div>
-    </div>
+      <!-- Range (slider) to input password length: only accepts the allowed range (between 8 - 128 characters) -->
+      <label for="passwordLength">Password Length:</label>
+      <input type="range" id="passwordLength" min="8" max="128" value="8" />
+      <span id="passwordLengthValue">8</span>
+      <p></p>
 
-    <!-- JavaScript reference -->
-    <script src="./assets/script.js"></script>
+      <label for="specialCharacters">Include Special Characters:</label>
+      <input type="checkbox" id="specialCharacters" />
 
-    <!-- Update the password length slider value dynamically -->
-    <script type="text/javascript">
-      var passwordLengthSlider = document.getElementById("passwordLength");
-      var passwordLengthValue = document.getElementById("passwordLengthValue");
+      <label for="numericCharacters">Include Numeric Characters:</label>
+      <input type="checkbox" id="numericCharacters" />
+      <p></p>
 
-      // Update the displayed value when the slider value changes
-      passwordLengthSlider.addEventListener("input", function() {
-      passwordLengthValue.textContent = passwordLengthSlider.value;
-    });
-    </script>
+      <label for="lowerCasedCharacters">Include Lowercase Characters:</label>
+      <input type="checkbox" id="lowerCasedCharacters" />
 
-  </body>
+      <label for="upperCasedCharacters">Include Uppercase Characters:</label>
+      <input type="checkbox" id="upperCasedCharacters" />
+      <p></p>
+
+      <button id="generate" class="btn">Generate Password</button>
+
+      <input type="reset" value="Reset" class="btn" id="btn-reset">
+
+      <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+    </form>
+  </section>
+
+  <!-- JavaScript reference -->
+  <script src="./assets/script.js"></script>
+
+</body>
+
 </html>

@@ -88,7 +88,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Global variables
+// Global array of character set options - stored as objects with a status (which is changed depending on user selection)
 const charOptions = [
   { name: "specialCharacters", status: false },
   { name: "numericCharacters", status: false },
@@ -96,6 +96,7 @@ const charOptions = [
   { name: "upperCasedCharacters", status: false },
 ];
 
+// Global variables - to store the generated password and the password length
 let generatedPassword = "";
 let passwordLength = 0;
 
@@ -164,10 +165,9 @@ function generatePassword() {
 
   // Clear the previous password
   generatedPassword = "";
-
+  
   // Check that at least one character set is selected before proceeding
   if (charOptions.every(option => !option.status)) {
-    console.error("Error: Please select at least one character set.");
     return;
   }
 
@@ -180,7 +180,10 @@ function generatePassword() {
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
-function writePassword() {
+function writePassword(event) {
+  // Prevent the form from being submitted
+  event.preventDefault();
+
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
@@ -191,4 +194,27 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', function (event) {
+  writePassword(event);
+});
+
+// Update the password length slider value dynamically
+var passwordLengthSlider = document.getElementById("passwordLength");
+var passwordLengthValue = document.getElementById("passwordLengthValue");
+
+// Update the displayed value when the slider value changes
+passwordLengthSlider.addEventListener("input", function () {
+  passwordLengthValue.textContent = passwordLengthSlider.value;
+});
+
+// Add event listener to reset button
+var resetBtn = document.querySelector('input[type="reset"]');
+resetBtn.addEventListener('click', function () {
+  // Reset the password length value to its default
+  passwordLengthSlider.value = 8;
+  passwordLengthValue.textContent = passwordLengthSlider.value;
+
+  // Manually trigger the input event to update the displayed value
+  var inputEvent = new Event('input');
+  passwordLengthSlider.dispatchEvent(inputEvent);
+});
