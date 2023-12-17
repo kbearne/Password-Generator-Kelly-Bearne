@@ -17,15 +17,7 @@
     <form>
       <!-- Welcome message and user instructios for form -->
       <p>
-        Welcome to the Password Generator. For security reasons, passwords must:
-      <ul>
-        <li>
-          be between 8 - 128 characters
-        </li>
-        <li>
-          have at least one character type selected
-        </li>
-      </ul>
+        Welcome to the Password Generator. For security reasons, passwords must be between 8 - 128 characters and at least one character type must be selected.
       </p>
       <!-- Form elements to generate a new password -->
       <!-- Range (slider) to input password length: only accepts the allowed range (between 8 - 128 characters) -->
@@ -48,7 +40,7 @@
       <input type="checkbox" id="upperCasedCharacters" />
       <p></p>
 
-      <button id="generate" class="btn">Generate Password</button>
+      <button id="generate" class="btn"><i class="fa-solid fa-key"></i> Generate Password</button>
 
       <input type="reset" value="Reset" class="btn" id="btn-reset">
 
@@ -56,8 +48,10 @@
     </form>
   </section>
 
-  <!-- JavaScript reference -->
+  <!-- JavaScript references -->
   <script src="./assets/script.js"></script>
+  <!-- Font awsome kit reference (for icons) -->
+  <script src="https://kit.fontawesome.com/b00aec035f.js" crossorigin="anonymous"></script>
 
 </body>
 
